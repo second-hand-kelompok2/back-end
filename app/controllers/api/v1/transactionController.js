@@ -1,4 +1,4 @@
-const { Notification, Product, Transaction } = require('../models')
+const { Notification, Product, Transaction } = require("../../../models");
 
 // const { Op } = require('sequelize')
 

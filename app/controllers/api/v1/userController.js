@@ -1,7 +1,7 @@
-const { User } = require("../models");
+const { User } = require("../../../models");
 const bcrypt = require("bcrypt");
-const jwt = require("../helper/jwt");
-const multer = require("../middleware/multer");
+const jwt = require("../../../helper/jwt");
+const multer = require("../../../middleware/multer");
 
 module.exports = class {
   static async getUsers(req, res) {
