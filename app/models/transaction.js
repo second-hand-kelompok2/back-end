@@ -21,9 +21,9 @@ module.exports = (sequelize, DataTypes) => {
   }
   Transaction.init(
     {
-      seller_id: DataTypes.STRING,
-      buyer_id: DataTypes.STRING,
-      product_id: DataTypes.STRING,
+      seller_id: DataTypes.INTEGER,
+      buyer_id: DataTypes.INTEGER,
+      product_id: DataTypes.INTEGER,
       status: DataTypes.STRING,
     },
     {

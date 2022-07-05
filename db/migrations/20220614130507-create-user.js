@@ -25,10 +25,10 @@ module.exports = {
         defaultValue: "",
       },
       phone: {
-        type: Sequelize.STRING,
-        defaultValue: "",
+        type: Sequelize.INTEGER,
+        defaultValue: null,
       },
-      kota: {
+      city: {
         type: Sequelize.STRING,
         defaultValue: "",
       },

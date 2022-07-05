@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         defaultValue: "",
       },
-      kota: {
+      city: {
         type: DataTypes.STRING,
         defaultValue: "",
       },
