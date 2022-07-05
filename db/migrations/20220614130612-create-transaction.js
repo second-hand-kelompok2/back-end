@@ -9,13 +9,13 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       seller_id: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       buyer_id: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       product_id: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       status: {
         type: Sequelize.STRING,

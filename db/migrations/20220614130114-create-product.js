@@ -23,9 +23,6 @@ module.exports = {
       product_price: {
         type: Sequelize.INTEGER
       },
-      product_img: {
-        type: Sequelize.STRING
-      },
       location: {
         type: Sequelize.STRING
       },
