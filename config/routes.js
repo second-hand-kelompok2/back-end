@@ -2,7 +2,9 @@ const express = require("express");
 const controllers = require("../app/controllers");
 const auth = require("../app/middleware/auth");
 var verify = require("../app/middleware/isLogin");
-const multer = require("../app/middleware/multer");
+// const multer = require("../app/middleware/multer");
+const upload = require("../utils/upload");
+const uploadOnMemory = require("../utils/memoryUpload");
 
 const appRouter = express.Router();
 const apiRouter = express.Router();
@@ -40,32 +42,48 @@ apiRouter.post(
 );
 apiRouter.post("/api/v1/users/login", controllers.api.v1.userController.Login);
 apiRouter.post(
-  "/profile/update/:id",
+  "/api/v1/users/profile/update/:id",
   auth,
-  multer.single("profile_img"),
+  upload.single("profile_img"),
   controllers.api.v1.userController.editUser
 );
 
+
 // product
-apiRouter.get("/api/v1/product/", controllers.api.v1.productController.getProduct);
-apiRouter.get("/api/v1/product/:userid", controllers.api.v1.productController.getUserProduct);
-apiRouter.get("/api/v1/product/info/:id", controllers.api.v1.productController.getInfoProduct);
-apiRouter.post("/api/v1/product/filterByName", controllers.api.v1.productController.getProductByName);
-apiRouter.post("/api/v1/product/filterByCategory", controllers.api.v1.productController.getProductByCategory);
+apiRouter.get(
+  "/api/v1/product/",
+  controllers.api.v1.productController.getProduct
+);
+apiRouter.get(
+  "/api/v1/product/:userid",
+  controllers.api.v1.productController.getUserProduct
+);
+apiRouter.get(
+  "/api/v1/product/info/:id",
+  controllers.api.v1.productController.getInfoProduct
+);
+apiRouter.post(
+  "/api/v1/product/filterByName",
+  controllers.api.v1.productController.getProductByName
+);
+apiRouter.post(
+  "/api/v1/product/filterByCategory",
+  controllers.api.v1.productController.getProductByCategory
+);
 apiRouter.post(
   "/api/v1/product/add",
+  uploadOnMemory.array("product_img", 3),
   verify.auth,
-  multer.single("product_img"),
   controllers.api.v1.productController.addProduct
 );
 apiRouter.post(
-  "/api/v1/product/:id",
+  "/api/v1/product/update/:id",
   verify.auth,
-  multer.single("product_img"),
+  uploadOnMemory.array("product_img", 3),
   controllers.api.v1.productController.editProduct
 );
 apiRouter.delete(
-  "/:id",
+  "/api/v1/product/delete/:id",
   verify.auth,
   controllers.api.v1.productController.DeleteProduct
 );
@@ -76,12 +94,36 @@ apiRouter.post(
   verify.auth,
   controllers.api.v1.transactionController.newTransaction
 );
-apiRouter.get("/api/v1/transaction/wishlist/:userid", verify.auth, controllers.api.v1.transactionController.getWishlist);
-apiRouter.get("/api/v1/transaction/notification/:userid", verify.auth, controllers.api.v1.transactionController.getNotification);
-apiRouter.post("/api/v1/transaction/accept-transaction", verify.auth, controllers.api.v1.transactionController.createTransaction);
-apiRouter.post("/api/v1/transaction/refuse-transaction", verify.auth, controllers.api.v1.transactionController.refuseTransaction);
-apiRouter.post("/api/v1/transaction/save", verify.auth, controllers.api.v1.transactionController.saveTransactionHistory);
-apiRouter.post("/api/v1/transaction/cancel", verify.auth, controllers.api.v1.transactionController.cancelTransactionHistory);
+apiRouter.get(
+  "/api/v1/transaction/wishlist/:userid",
+  verify.auth,
+  controllers.api.v1.transactionController.getWishlist
+);
+apiRouter.get(
+  "/api/v1/transaction/notification/:userid",
+  verify.auth,
+  controllers.api.v1.transactionController.getNotification
+);
+apiRouter.post(
+  "/api/v1/transaction/accept-transaction",
+  verify.auth,
+  controllers.api.v1.transactionController.createTransaction
+);
+apiRouter.post(
+  "/api/v1/transaction/refuse-transaction",
+  verify.auth,
+  controllers.api.v1.transactionController.refuseTransaction
+);
+apiRouter.post(
+  "/api/v1/transaction/save",
+  verify.auth,
+  controllers.api.v1.transactionController.saveTransactionHistory
+);
+apiRouter.post(
+  "/api/v1/transaction/cancel",
+  verify.auth,
+  controllers.api.v1.transactionController.cancelTransactionHistory
+);
 apiRouter.get(
   "/api/v1/transaction/get-buyer-transaction/:userid",
   verify.auth,
