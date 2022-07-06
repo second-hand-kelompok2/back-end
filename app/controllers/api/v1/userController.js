@@ -29,8 +29,7 @@ module.exports = class {
   }
 
   static async editUser(req, res) {
-    const id = req.params.id;
-    const cekData = await User.findOne({ where: { id } });
+    const cekData = await User.findOne({ where: { id: req.params.id } });
 
     if (!cekData) {
       res.status(400).send({
@@ -44,10 +43,10 @@ module.exports = class {
             name: req.body.name,
             profile_img: req.file.path,
             phone: req.body.phone,
-            kota: req.body.kota,
+            city: req.body.city,
             address: req.body.address,
           },
-          { where: { id } }
+          { where: { id: req.params.id } }
         );
         res
           .status(201)

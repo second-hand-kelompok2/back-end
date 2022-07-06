@@ -11,16 +11,14 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.hasMany(models.Product, {
         foreignKey: "user_id",
-        as: "product",
       });
       // User.hasMany(models.Transaction, {
       //   foreignKey: "user_id",
       //   as: "transaction",
       // });
-      User.hasMany(models.Notification, {
-        foreignKey: "notification_id",
-        as: "notification",
-      });
+      // User.hasMany(models.Notification, {
+      //   foreignKey: "notification_id",
+      // });
     }
   }
   User.init(
@@ -32,11 +30,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         defaultValue: "",
       },
-      city: {
-        type: DataTypes.STRING,
-        defaultValue: "",
-      },
       phone: {
+        type: DataTypes.INTEGER,
+        defaultValue: null,
+      },
+      city: {
         type: DataTypes.STRING,
         defaultValue: "",
       },
