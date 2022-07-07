@@ -1,13 +1,16 @@
 const express = require("express");
+var cors = require("cors");
 const controllers = require("../app/controllers");
 const auth = require("../app/middleware/auth");
 var verify = require("../app/middleware/isLogin");
-// const multer = require("../app/middleware/multer");
+const multer = require("../app/middleware/multer");
 const upload = require("../utils/upload");
 const uploadOnMemory = require("../utils/memoryUpload");
 
 const appRouter = express.Router();
 const apiRouter = express.Router();
+apiRouter.use(cors());
+apiRouter.use(express.json());
 
 /** Mount GET / handler */
 appRouter.get("/", controllers.main.index);
@@ -44,10 +47,9 @@ apiRouter.post("/api/v1/users/login", controllers.api.v1.userController.Login);
 apiRouter.post(
   "/api/v1/users/profile/update/:id",
   auth,
-  upload.single("profile_img"),
+  multer.single("profile_img"),
   controllers.api.v1.userController.editUser
 );
-
 
 // product
 apiRouter.get(
@@ -72,14 +74,14 @@ apiRouter.post(
 );
 apiRouter.post(
   "/api/v1/product/add",
-  uploadOnMemory.array("product_img", 3),
+  uploadOnMemory.array("product_img", 4),
   verify.auth,
   controllers.api.v1.productController.addProduct
 );
 apiRouter.post(
   "/api/v1/product/update/:id",
   verify.auth,
-  uploadOnMemory.array("product_img", 3),
+  uploadOnMemory.array("product_img", 4),
   controllers.api.v1.productController.editProduct
 );
 apiRouter.delete(

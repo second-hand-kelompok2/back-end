@@ -1,7 +1,10 @@
 const { User } = require("../../../models");
 const bcrypt = require("bcrypt");
 const jwt = require("../../../helper/jwt");
-const multer = require("../../../middleware/multer");
+const cloudinary = require("../../../../utils/cloudinary");
+const { promisify } = require("util");
+const cloudinaryUpload = promisify(cloudinary.uploader.upload);
+const cloudinaryDestroy = promisify(cloudinary.uploader.destroy);
 
 module.exports = class {
   static async getUsers(req, res) {
@@ -38,10 +41,11 @@ module.exports = class {
       });
     } else {
       try {
-        const result = await User.update(
+        const result = await cloudinaryUpload(req.file.path);
+        const updateUser = await User.update(
           {
             name: req.body.name,
-            profile_img: req.file.path,
+            profile_img: result.secure_url,
             phone: req.body.phone,
             city: req.body.city,
             address: req.body.address,
@@ -53,7 +57,7 @@ module.exports = class {
           .json({
             status: 201,
             message: "Data user ditambahkan",
-            data: result,
+            data: updateUser,
           })
           .end();
       } catch (err) {

@@ -2,6 +2,7 @@ const { Product, Image } = require("../../../models");
 const { Op } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
+const multer = require("../../../middleware/multer");
 const cloudinary = require("../../../../utils/cloudinary");
 const { promisify } = require("util");
 const cloudinaryUpload = promisify(cloudinary.uploader.upload);
@@ -115,6 +116,7 @@ module.exports = class {
           message: "Nama produk tidak boleh sama!",
         });
       } else {
+        // const result = await cloudinaryUpload(req.file.path);
         const productCreated = await Product.create({
           user_id: req.body.user_id,
           product_name: req.body.product_name,
@@ -178,6 +180,7 @@ module.exports = class {
             product_category: req.body.product_category,
             product_desc: req.body.product_desc,
             product_price: req.body.product_price,
+            thumbnail: req.body.thumbnaill,
             location: req.body.location,
             status: req.body.status,
           },
