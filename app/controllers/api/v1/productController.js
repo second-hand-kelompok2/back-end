@@ -180,7 +180,6 @@ module.exports = class {
             product_category: req.body.product_category,
             product_desc: req.body.product_desc,
             product_price: req.body.product_price,
-            thumbnail: req.body.thumbnaill,
             location: req.body.location,
             status: req.body.status,
           },
