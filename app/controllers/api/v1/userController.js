@@ -122,6 +122,7 @@ module.exports = class {
       });
       const secureuser = user.dataValues;
       delete secureuser.password;
+      res.header("token", token);
       res.status(200).send({
         status: 200,
         message: "user Found",
