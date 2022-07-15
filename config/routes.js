@@ -75,7 +75,7 @@ apiRouter.post(
 apiRouter.post(
   "/api/v1/product/add",
   uploadOnMemory.array("product_img", 4),
-  // verify.auth,
+  auth,
   controllers.api.v1.productController.addProduct
 );
 apiRouter.post(
