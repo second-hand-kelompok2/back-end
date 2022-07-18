@@ -35,6 +35,11 @@ module.exports = class {
   static async getUserProduct(req, res) {
     try {
       const result = await Product.findAll({
+        include: [
+          {
+            model: Image,
+          },
+        ],
         where: { user_id: req.params.userid },
       });
       res.status(200).json({
@@ -50,6 +55,11 @@ module.exports = class {
   static async getProductByName(req, res) {
     try {
       const result = await Product.findAll({
+        include: [
+          {
+            model: Image,
+          },
+        ],
         where: {
           product_name: { [Op.like]: "%" + req.body.productName + "%" },
         },
@@ -67,6 +77,11 @@ module.exports = class {
   static async getProductByCategory(req, res) {
     try {
       const result = await Product.findAll({
+        include: [
+          {
+            model: Image,
+          },
+        ],
         where: { product_category: req.body.category },
       });
       res.status(200).json({
@@ -89,7 +104,14 @@ module.exports = class {
       });
     } else {
       try {
-        const result = await Product.findAll({ where: { id: req.params.id } });
+        const result = await Product.findAll({
+          include: [
+            {
+              model: Image,
+            },
+          ],
+          where: { id: req.params.id },
+        });
         res.status(200).json({
           status: 200,
           data: result,
