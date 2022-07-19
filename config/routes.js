@@ -39,6 +39,10 @@ apiRouter.delete(
 //=========================================================================================================================
 // user
 apiRouter.get("/api/v1/users/", controllers.api.v1.userController.getUsers);
+apiRouter.get(
+  "/api/v1/users/:id",
+  controllers.api.v1.userController.getUserById
+);
 apiRouter.post(
   "/api/v1/users/register",
   controllers.api.v1.userController.Register
