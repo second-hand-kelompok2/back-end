@@ -50,7 +50,7 @@ apiRouter.post(
 apiRouter.post("/api/v1/users/login", controllers.api.v1.userController.Login);
 apiRouter.post(
   "/api/v1/users/profile/update/:id",
-  auth,
+  // auth,
   multer.single("profile_img"),
   controllers.api.v1.userController.editUser
 );
