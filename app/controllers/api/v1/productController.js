@@ -1,4 +1,4 @@
-const { Product, Image } = require("../../../models");
+const { Product, Image, User } = require("../../../models");
 const { Op } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
