@@ -80,7 +80,12 @@ module.exports = class {
   }
 
   static async getInfoProduct(req, res) {
-    const cekData = await Product.findOne({ where: { id: req.params.id } });
+    const cekData = await Product.findOne({ include: [
+      {
+        model: User,
+      },
+    ],
+    where: { id: req.params.id } });
 
     if (!cekData) {
       res.status(400).send({
