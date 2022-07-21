@@ -30,6 +30,29 @@ module.exports = class {
     //   res.status(500).send(error);
     // }
   }
+  static async getUserById(req, res) {
+    const cekData = await User.findOne({ where: { id: req.params.id } });
+
+    if (!cekData) {
+      res.status(400).send({
+        status: 400,
+        message: "User tidak ditemukan!",
+      });
+    } else {
+      try {
+        const result = await User.findAll({
+          where: { id: req.params.id },
+        });
+        res.status(200).json({
+          status: 200,
+          data: result,
+        });
+      } catch (err) {
+        console.log(err);
+        res.send(err);
+      }
+    }
+  }
 
   static async editUser(req, res) {
     const cekData = await User.findOne({ where: { id: req.params.id } });
@@ -122,6 +145,7 @@ module.exports = class {
       });
       const secureuser = user.dataValues;
       delete secureuser.password;
+      res.header("token", token);
       res.status(200).send({
         status: 200,
         message: "user Found",

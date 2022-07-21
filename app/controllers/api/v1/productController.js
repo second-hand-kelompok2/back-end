@@ -35,6 +35,11 @@ module.exports = class {
   static async getUserProduct(req, res) {
     try {
       const result = await Product.findAll({
+        include: [
+          {
+            model: Image,
+          },
+        ],
         where: { user_id: req.params.userid },
       });
       res.status(200).json({
@@ -50,6 +55,11 @@ module.exports = class {
   static async getProductByName(req, res) {
     try {
       const result = await Product.findAll({
+        include: [
+          {
+            model: Image,
+          },
+        ],
         where: {
           product_name: { [Op.like]: "%" + req.body.productName + "%" },
         },
@@ -67,6 +77,11 @@ module.exports = class {
   static async getProductByCategory(req, res) {
     try {
       const result = await Product.findAll({
+        include: [
+          {
+            model: Image,
+          },
+        ],
         where: { product_category: req.body.category },
       });
       res.status(200).json({
@@ -123,7 +138,7 @@ module.exports = class {
       } else {
         // const result = await cloudinaryUpload(req.file.path);
         const productCreated = await Product.create({
-          user_id: req.body.user_id,
+          user_id: req.userlogin.id,
           product_name: req.body.product_name,
           product_category: req.body.product_category,
           product_desc: req.body.product_desc,
@@ -185,7 +200,6 @@ module.exports = class {
             product_category: req.body.product_category,
             product_desc: req.body.product_desc,
             product_price: req.body.product_price,
-            thumbnail: req.body.thumbnaill,
             location: req.body.location,
             status: req.body.status,
           },

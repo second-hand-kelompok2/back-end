@@ -39,6 +39,10 @@ apiRouter.delete(
 //=========================================================================================================================
 // user
 apiRouter.get("/api/v1/users/", controllers.api.v1.userController.getUsers);
+apiRouter.get(
+  "/api/v1/users/:id",
+  controllers.api.v1.userController.getUserById
+);
 apiRouter.post(
   "/api/v1/users/register",
   controllers.api.v1.userController.Register
@@ -46,7 +50,7 @@ apiRouter.post(
 apiRouter.post("/api/v1/users/login", controllers.api.v1.userController.Login);
 apiRouter.post(
   "/api/v1/users/profile/update/:id",
-  auth,
+  // auth,
   multer.single("profile_img"),
   controllers.api.v1.userController.editUser
 );
@@ -75,7 +79,7 @@ apiRouter.post(
 apiRouter.post(
   "/api/v1/product/add",
   uploadOnMemory.array("product_img", 4),
-  verify.auth,
+  auth,
   controllers.api.v1.productController.addProduct
 );
 apiRouter.post(
