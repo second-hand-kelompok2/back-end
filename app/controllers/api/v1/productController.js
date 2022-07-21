@@ -95,12 +95,7 @@ module.exports = class {
   }
 
   static async getInfoProduct(req, res) {
-    const cekData = await Product.findOne({ include: [
-      {
-        model: User,
-      },
-    ],
-    where: { id: req.params.id } });
+    const cekData = await Product.findOne({ where: { id: req.params.id } });
 
     if (!cekData) {
       res.status(400).send({
@@ -112,11 +107,9 @@ module.exports = class {
         const result = await Product.findAll({
           include: [
             {
-              model: Image,
+              model: User,
             },
-          ],
-          where: { id: req.params.id },
-        });
+          ], where: { id: req.params.id } });
         res.status(200).json({
           status: 200,
           data: result,
