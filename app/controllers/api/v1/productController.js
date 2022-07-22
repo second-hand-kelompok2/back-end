@@ -104,7 +104,6 @@ module.exports = class {
           include: [
             {
               model: Image,
-              model: User,
             },
           ],
           where: { id: req.params.id },
