@@ -104,7 +104,14 @@ module.exports = class {
       });
     } else {
       try {
-        const result = await Product.findAll({ where: { id: req.params.id } });
+        const result = await Product.findAll({
+          include: [
+            {
+              model: Image,
+            },
+          ],
+          where: { id: req.params.id },
+        });
         res.status(200).json({
           status: 200,
           data: result,

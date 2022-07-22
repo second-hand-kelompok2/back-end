@@ -50,7 +50,7 @@ apiRouter.post(
 apiRouter.post("/api/v1/users/login", controllers.api.v1.userController.Login);
 apiRouter.post(
   "/api/v1/users/profile/update/:id",
-  // auth,
+  auth,
   multer.single("profile_img"),
   controllers.api.v1.userController.editUser
 );
@@ -84,60 +84,60 @@ apiRouter.post(
 );
 apiRouter.post(
   "/api/v1/product/update/:id",
-  verify.auth,
+  auth,
   uploadOnMemory.array("product_img", 4),
   controllers.api.v1.productController.editProduct
 );
 apiRouter.delete(
   "/api/v1/product/delete/:id",
-  verify.auth,
+  auth,
   controllers.api.v1.productController.DeleteProduct
 );
 
 // transactions
 apiRouter.post(
   "/api/v1/transaction/new-transaction",
-  verify.auth,
+  auth,
   controllers.api.v1.transactionController.newTransaction
 );
 apiRouter.get(
   "/api/v1/transaction/wishlist/:userid",
-  verify.auth,
+  auth,
   controllers.api.v1.transactionController.getWishlist
 );
 apiRouter.get(
   "/api/v1/transaction/notification/:userid",
-  verify.auth,
+  auth,
   controllers.api.v1.transactionController.getNotification
 );
 apiRouter.post(
   "/api/v1/transaction/accept-transaction",
-  verify.auth,
+  auth,
   controllers.api.v1.transactionController.createTransaction
 );
 apiRouter.post(
   "/api/v1/transaction/refuse-transaction",
-  verify.auth,
+  auth,
   controllers.api.v1.transactionController.refuseTransaction
 );
 apiRouter.post(
   "/api/v1/transaction/save",
-  verify.auth,
+  auth,
   controllers.api.v1.transactionController.saveTransactionHistory
 );
 apiRouter.post(
   "/api/v1/transaction/cancel",
-  verify.auth,
+  auth,
   controllers.api.v1.transactionController.cancelTransactionHistory
 );
 apiRouter.get(
   "/api/v1/transaction/get-buyer-transaction/:userid",
-  verify.auth,
+  auth,
   controllers.api.v1.transactionController.getTransactionBuyer
 );
 apiRouter.get(
   "/api/v1/transaction/get-seller-transaction/:userid",
-  verify.auth,
+  auth,
   controllers.api.v1.transactionController.getTransactionSeller
 );
 
