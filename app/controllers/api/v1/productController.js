@@ -17,10 +17,6 @@ module.exports = class {
             model: Image,
           },
         ],
-        order: [
-          ["createdAt", "DESC"],
-          [{ model: Image }, "createdAt", "DESC"],
-        ],
       });
       res.status(200).json({
         status: 200,
@@ -108,6 +104,7 @@ module.exports = class {
           include: [
             {
               model: Image,
+              model: User,
             },
           ],
           where: { id: req.params.id },
