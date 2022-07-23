@@ -9,13 +9,7 @@ const uploadOnMemory = require("../utils/memoryUpload");
 
 const appRouter = express.Router();
 const apiRouter = express.Router();
-appRouter.use(
-  cors({
-    credentials: true,
-    origin: "https://secondhand-delta.vercel.app",
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-  })
-);
+apiRouter.use(cors());
 apiRouter.use(express.json());
 
 /** Mount GET / handler */
