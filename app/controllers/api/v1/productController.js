@@ -36,7 +36,7 @@ module.exports = class {
             model: Image,
           },
         ],
-        where: { user_id: req.params.userid },
+        where: { user_id: req.userlogin.id },
       });
       res.status(200).json({
         status: 200,
