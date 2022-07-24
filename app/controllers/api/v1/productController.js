@@ -139,13 +139,13 @@ module.exports = class {
       } else {
         // const result = await cloudinaryUpload(req.file.path);
         const productCreated = await Product.create({
-          user_id: req.userlogin.id,
+          user_id: parseInt(req.userlogin.id),
           product_name: req.body.product_name,
           product_category: req.body.product_category,
           product_desc: req.body.product_desc,
           product_price: req.body.product_price,
           location: req.body.location,
-          status: req.body.status,
+          status: "Belum terjual",
         });
         for (var i = 0; i < req.files.length; i++) {
           fileBase64.push(req.files[i].buffer.toString("base64"));
