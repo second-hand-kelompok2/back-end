@@ -9,10 +9,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // Transaction.belongsTo(models.User, {
-      //   foreignKey: "user_id",
-      //   as: "users",
-      // });
       Transaction.belongsTo(models.Product, {
         foreignKey: "product_id",
       });
@@ -20,10 +16,12 @@ module.exports = (sequelize, DataTypes) => {
   }
   Transaction.init(
     {
-      seller_id: DataTypes.INTEGER,
-      buyer_id: DataTypes.INTEGER,
+      buyerId: DataTypes.INTEGER,
+      sellerId: DataTypes.INTEGER,
       product_id: DataTypes.INTEGER,
+      req_price: DataTypes.INTEGER,
       status: DataTypes.STRING,
+      isRead: DataTypes.BOOLEAN,
     },
     {
       sequelize,

@@ -139,7 +139,7 @@ module.exports = class {
           product_desc: req.body.product_desc,
           product_price: req.body.product_price,
           location: req.body.location,
-          status: req.body.status,
+          status: "Belum terjual",
         });
         for (var i = 0; i < req.files.length; i++) {
           fileBase64.push(req.files[i].buffer.toString("base64"));
