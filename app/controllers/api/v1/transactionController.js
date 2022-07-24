@@ -15,13 +15,13 @@ module.exports = class {
         // }
 
         // else {
-            // const seller = await Product.findOne({ where: {id: req.body.product_id} });
+            // const seller = await Product.findOne({ where: {id: req.params.id} });
 
             try {
                 const result = await Transaction.create({
                     buyerId: req.body.from_userId,
-                    // sellerId: seller['user_id'],
-                    sellerId: req.body.sellerId,
+                    sellerId: seller['user_id'],
+                    //sellerId: req.body.sellerId,
                     product_id: req.params.id,
                     req_price: req.body.req_price,
                     status: 'Pending',
