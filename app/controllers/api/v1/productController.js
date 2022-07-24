@@ -139,7 +139,7 @@ module.exports = class {
       } else {
         // const result = await cloudinaryUpload(req.file.path);
         const productCreated = await Product.create({
-          user_id: req.userlogin.id,
+          user_id: req.body.userid,
           product_name: req.body.product_name,
           product_category: req.body.product_category,
           product_desc: req.body.product_desc,
