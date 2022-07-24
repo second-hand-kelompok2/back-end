@@ -103,55 +103,50 @@ apiRouter.delete(
 
 // transactions
 apiRouter.post(
-  "/api/v1/transaction/new-transaction",
-  auth,
-  controllers.api.v1.transactionController.newTransaction
-);
-apiRouter.get(
-  "/api/v1/transaction/wishlist/:userid",
-  auth,
-  controllers.api.v1.transactionController.getWishlist
-);
-apiRouter.get(
-  "/api/v1/transaction/notification/:userid",
-  auth,
-  controllers.api.v1.transactionController.getNotification
-);
-apiRouter.post(
-  "/api/v1/transaction/accept-transaction",
+  "/api/v1/transaction/create",
   auth,
   controllers.api.v1.transactionController.createTransaction
 );
 apiRouter.post(
-  "/api/v1/transaction/refuse-transaction",
+  "/api/v1/transaction/:id/accept",
+  auth,
+  controllers.api.v1.transactionController.acceptTransaction
+);
+apiRouter.post(
+  "/api/v1/transaction/:id/refuse",
   auth,
   controllers.api.v1.transactionController.refuseTransaction
 );
 apiRouter.post(
-  "/api/v1/transaction/save",
+  "/api/v1/transaction/:id/cancel",
   auth,
-  controllers.api.v1.transactionController.saveTransactionHistory
+  controllers.api.v1.transactionController.cancelTransaction
 );
 apiRouter.post(
-  "/api/v1/transaction/cancel",
+  "/api/v1/transaction/:id/end",
   auth,
-  controllers.api.v1.transactionController.cancelTransactionHistory
+  controllers.api.v1.transactionController.endTransaction
 );
 apiRouter.get(
-  "/api/v1/transaction/get-buyer-transaction/:userid",
+  "/api/v1/transaction/sold-transaction/:userid",
   auth,
-  controllers.api.v1.transactionController.getTransactionBuyer
+  controllers.api.v1.transactionController.getSoldTransaction
 );
 apiRouter.get(
-  "/api/v1/transaction/get-seller-transaction/:userid",
+  "/api/v1/notification/:userid",
   auth,
-  controllers.api.v1.transactionController.getTransactionSeller
+  controllers.api.v1.transactionController.getNotification
+);
+apiRouter.get(
+  "/api/v1/wishlist/:userid",
+  auth,
+  controllers.api.v1.transactionController.getWishlist
 );
 
 //buat cek aja
 apiRouter.get(
-  "/api/v1/transaction/all-notification",
-  controllers.api.v1.transactionController.getAllNotification
+  "/api/v1/transaction/all",
+  controllers.api.v1.transactionController.getAllTransaction
 );
 
 //=================================================================================================================================
