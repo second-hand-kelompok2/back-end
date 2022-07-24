@@ -17,6 +17,10 @@ module.exports = class {
             model: Image,
           },
         ],
+        order: [
+          ["createdAt", "DESC"],
+          [{ model: Image }, "createdAt", "DESC"],
+        ],
       });
       res.status(200).json({
         status: 200,
@@ -36,7 +40,7 @@ module.exports = class {
             model: Image,
           },
         ],
-        where: { user_id: req.userlogin.id },
+        where: { user_id: req.params.userid },
       });
       res.status(200).json({
         status: 200,
@@ -100,17 +104,7 @@ module.exports = class {
       });
     } else {
       try {
-        const result = await Product.findAll({
-          include: [
-            {
-              model: Image,
-            },
-            {
-              model: User,
-            },
-          ],
-          where: { id: req.params.id },
-        });
+        const result = await Product.findAll({ where: { id: req.params.id } });
         res.status(200).json({
           status: 200,
           data: result,
