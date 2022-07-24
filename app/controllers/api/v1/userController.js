@@ -150,10 +150,7 @@ module.exports = class {
         status: 200,
         message: "user Found",
         data: {
-          user: {
-            secureuser,
-            password: "secret",
-          },
+          secureuser,
           token: token,
         },
       });
