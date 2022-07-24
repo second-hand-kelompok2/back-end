@@ -9,14 +9,14 @@ const uploadOnMemory = require("../utils/memoryUpload");
 
 const appRouter = express.Router();
 const apiRouter = express.Router();
-// apiRouter.use(cors());
-appRouter.use(
-  cors({
-    credentials: true,
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-  })
-);
+apiRouter.use(cors());
+// appRouter.use(
+//   cors({
+//     credentials: true,
+//     origin: "http://localhost:3000",
+//     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+//   })
+// );
 apiRouter.use(express.json());
 
 /** Mount GET / handler */
