@@ -108,6 +108,9 @@ module.exports = class {
           {
             model: Image,
           },
+          {
+            model: User,
+          },
         ],
         where: { id: req.params.id } });
         res.status(200).json({
