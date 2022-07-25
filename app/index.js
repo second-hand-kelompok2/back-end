@@ -13,26 +13,26 @@ const publicDir = path.join(__dirname, "../public");
 const viewsDir = path.join(__dirname, "./views");
 const app = express();
 
-app.use((req, res, next) => {
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader("Access-Control-Allow-Methods", "GET,PUT,PATCH,POST,DELETE");
+//   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+//   next();
+// });
+var allowCrossDomain = function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET,PUT,PATCH,POST,DELETE");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
-});
-// var allowCrossDomain = function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-//   res.header("Access-Control-Allow-Methods", "GET,PUT,PATCH,POST,DELETE");
-//   next();
-// };
+};
 
-// app.use(allowCrossDomain);
+app.use(allowCrossDomain);
 
 /** Install request logger */
 app.use(morgan("dev"));
 
 /** Install JSON request parser */
 app.use(express.json());
-
+app.use(cors());
 // app.use(
 //   cors({
 //     credentials: true,
