@@ -13,7 +13,12 @@ const publicDir = path.join(__dirname, "../public");
 const viewsDir = path.join(__dirname, "./views");
 const app = express();
 
-app.use(cors());
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET,PUT,PATCH,POST,DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
 // var allowCrossDomain = function (req, res, next) {
 //   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
 //   res.header("Access-Control-Allow-Methods", "GET,PUT,PATCH,POST,DELETE");
@@ -35,7 +40,6 @@ app.use(express.json());
 //     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
 //   })
 // );
-app.use(express.urlencoded({ extended: true }));
 /** Install View Engine */
 app.set("views", viewsDir);
 app.set("view engine", "ejs");

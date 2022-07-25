@@ -1,5 +1,5 @@
 const express = require("express");
-var cors = require("cors");
+// var cors = require("cors");
 const controllers = require("../app/controllers");
 const auth = require("../app/middleware/auth");
 var verify = require("../app/middleware/isLogin");
@@ -9,7 +9,7 @@ const uploadOnMemory = require("../utils/memoryUpload");
 const app = express();
 const appRouter = express.Router();
 const apiRouter = express.Router();
-app.use(cors());
+// app.use(cors());
 
 // appRouter.use(
 //   cors({
