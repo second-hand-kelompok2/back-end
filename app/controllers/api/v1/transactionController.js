@@ -115,7 +115,7 @@ module.exports = class {
 
     static async getSoldTransaction(req, res) {
         try {
-            const result = await Transaction.findAll({ where: {buyer_id: req.params.userid, status: "Selesai"} })
+            const result = await Transaction.findAll({ where: {buyerId: req.params.userid, status: "Selesai"} })
             res.status(200).json({
                 status: 200,
                 data: result
