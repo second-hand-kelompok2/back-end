@@ -15,7 +15,7 @@ module.exports = class {
         // }
 
         // else {
-            // const seller = await Product.findOne({ where: {id: req.params.id} });
+            const seller = await Product.findOne({ where: {id: req.params.id} });
 
             try {
                 const result = await Transaction.create({
