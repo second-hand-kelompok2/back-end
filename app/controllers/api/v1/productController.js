@@ -104,15 +104,17 @@ module.exports = class {
       });
     } else {
       try {
-        const result = await Product.findAll({ include: [
-          {
-            model: Image,
-          },
-          {
-            model: User,
-          },
-        ],
-        where: { id: req.params.id } });
+        const result = await Product.findAll({
+          include: [
+            {
+              model: Image,
+            },
+            {
+              model: User,
+            },
+          ],
+          where: { id: req.params.id },
+        });
         res.status(200).json({
           status: 200,
           data: result,
@@ -141,7 +143,7 @@ module.exports = class {
       } else {
         // const result = await cloudinaryUpload(req.file.path);
         const productCreated = await Product.create({
-          user_id: req.body.id,
+          user_id: req.userlogin.id,
           product_name: req.body.product_name,
           product_category: req.body.product_category,
           product_desc: req.body.product_desc,
