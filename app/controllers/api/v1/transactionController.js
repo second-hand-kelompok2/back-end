@@ -172,4 +172,19 @@ module.exports = class {
             res.send(err)
         }
     }
+    
+    static async deleteAllTransaction(req, res) {
+        try {
+            await Transaction.destroy()
+            res.status(200).json({
+                status: 200,
+                message: "Seluruh data transaksi telah dihapus"
+            })
+        }
+
+        catch(err) {
+            console.log(err)
+            res.send(err)
+        }
+    }
 }
