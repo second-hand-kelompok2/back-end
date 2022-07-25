@@ -162,6 +162,11 @@ module.exports = class {
         include: [
           {
             model: Product,
+            include: [
+              {
+                model: Image,
+              },
+            ],
           },
         ],
         where: { buyerId: req.params.userid },
