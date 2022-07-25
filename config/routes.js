@@ -143,7 +143,7 @@ apiRouter.get(
   controllers.api.v1.transactionController.getWishlist
 );
 apiRouter.delete(
-  "/api/v1/transaction/delete-all",
+  "/api/v1/transaction/delete",
   controllers.api.v1.transactionController.deleteAllTransaction
 );
 
