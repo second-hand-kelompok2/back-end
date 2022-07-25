@@ -6,18 +6,18 @@ var verify = require("../app/middleware/isLogin");
 const multer = require("../app/middleware/multer");
 const upload = require("../utils/upload");
 const uploadOnMemory = require("../utils/memoryUpload");
-
+const app = express();
 const appRouter = express.Router();
 const apiRouter = express.Router();
-// apiRouter.use(cors());
+app.use(cors());
 
-appRouter.use(
-  cors({
-    credentials: true,
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-  })
-);
+// appRouter.use(
+//   cors({
+//     credentials: true,
+//     origin: "http://localhost:3000",
+//     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+//   })
+// );
 apiRouter.use(express.json());
 
 /** Mount GET / handler */
