@@ -1,28 +1,26 @@
-const { Product, Transaction } = require("../../../models");
+const { Product, Image, Transaction } = require("../../../models");
 
 // const { Op } = require('sequelize')
 
 module.exports = class {
     static async createTransaction(req, res) {
-        // const cekData = await Notification.findOne({ where: {from_userId: req.body.from_userId, product_id: req.body.product_id} })
-        // const cekData = await Notification.findOne({ where: {product_id: req.body.product_id} })
+        const cekData = await Transaction.findOne({ where: {buyerId: req.body.buyerId, product_id: req.body.product_id} })
+        //const cekData = await Product.findOne({ where: {user_id: req.body.sllerId} })
 
-        // if(cekData) {
-        //     res.status(400).send({
-        //         status: 400,
-        //         message: 'Kamu telah mengajukan penawaran untuk produk ini!'
-        //     })
-        // }
+        if(cekData) {
+             res.status(400).send({
+                 status: 400,
+                 message: 'Kamu telah mengajukan penawaran untuk produk ini!'
+             })
+         }
 
-        // else {
-            // const seller = await Product.findOne({ where: {id: req.body.product_id} });
+        else {
 
             try {
                 const result = await Transaction.create({
-                    buyerId: req.body.from_userId,
-                    // sellerId: seller['user_id'],
-                    sellerId: req.body.sellerId,
-                    product_id: req.params.id,
+                    buyerId: req.body.buyerId,
+                    sllerId: req.body.sllerId,
+                    product_id: req.body.product_id,
                     req_price: req.body.req_price,
                     status: 'Pending',
                     isRead: false
@@ -38,7 +36,7 @@ module.exports = class {
                 console.log(err)
                 res.send(err)
             }
-        // }
+        }
     }
 
     static async acceptTransaction(req, res) {
@@ -147,7 +145,14 @@ module.exports = class {
 
     static async getWishlist(req, res) {
         try {
-            const result = await Transaction.findAll({ where: {buyerId: req.params.userid} })
+            const result = await Transaction.findAll({ 
+            include: [
+              {
+                model: Product,
+              }
+            ],
+            where: {buyerId: req.params.userid} })
+            
             res.status(200).json({
                 status: 200,
                 data: result
@@ -166,6 +171,23 @@ module.exports = class {
             res.status(200).json({
                 status: 200,
                 data: result
+            })
+        }
+
+        catch(err) {
+            console.log(err)
+            res.send(err)
+        }
+    }
+    
+    static async deleteAllTransaction(req, res) {
+        try {
+            await Transaction.destroy({
+              truncate: true
+            })
+            res.status(200).json({
+                status: 200,
+                message: "Seluruh data transaksi telah dihapus"
             })
         }
 
