@@ -10,6 +10,7 @@ const uploadOnMemory = require("../utils/memoryUpload");
 const appRouter = express.Router();
 const apiRouter = express.Router();
 apiRouter.use(cors());
+apiRouter.use(express.urlencoded({ extended: true }));
 // appRouter.use(
 //   cors({
 //     credentials: true,

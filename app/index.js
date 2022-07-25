@@ -35,7 +35,7 @@ app.use(express.json());
 //     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
 //   })
 // );
-
+app.use(express.urlencoded({ extended: true }));
 /** Install View Engine */
 app.set("views", viewsDir);
 app.set("view engine", "ejs");
