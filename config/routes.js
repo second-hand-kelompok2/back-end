@@ -142,6 +142,10 @@ apiRouter.get(
   auth,
   controllers.api.v1.transactionController.getWishlist
 );
+apiRouter.delete(
+  "/api/v1/transaction/delete-all",
+  controllers.api.v1.transactionController.deleteAllTransaction
+);
 
 //buat cek aja
 apiRouter.get(
