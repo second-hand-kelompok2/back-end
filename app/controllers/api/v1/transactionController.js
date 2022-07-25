@@ -14,7 +14,7 @@ module.exports = class {
              })
          }
 
-        // else {
+        else {
 
             try {
                 const result = await Transaction.create({
@@ -36,7 +36,7 @@ module.exports = class {
                 console.log(err)
                 res.send(err)
             }
-        // }
+        }
     }
 
     static async acceptTransaction(req, res) {
