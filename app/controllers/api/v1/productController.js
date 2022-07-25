@@ -200,7 +200,6 @@ module.exports = class {
         const id = req.params.id;
         await Product.update(
           {
-            user_id: req.body.user_id,
             product_name: req.body.product_name,
             product_category: req.body.product_category,
             product_desc: req.body.product_desc,
