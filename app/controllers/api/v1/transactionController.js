@@ -4,15 +4,15 @@ const { Product, Transaction } = require("../../../models");
 
 module.exports = class {
     static async createTransaction(req, res) {
-        // const cekData = await Notification.findOne({ where: {from_userId: req.body.from_userId, product_id: req.body.product_id} })
-        // const cekData = await Notification.findOne({ where: {product_id: req.body.product_id} })
+        const cekData = await Transaction.findOne({ where: {buyerId: req.body.buyerId, product_id: req.body.product_id} })
+        //const cekData = await Product.findOne({ where: {user_id: req.body.sllerId} })
 
-        // if(cekData) {
-        //     res.status(400).send({
-        //         status: 400,
-        //         message: 'Kamu telah mengajukan penawaran untuk produk ini!'
-        //     })
-        // }
+        if(cekData) {
+             res.status(400).send({
+                 status: 400,
+                 message: 'Kamu telah mengajukan penawaran untuk produk ini!'
+             })
+         }
 
         // else {
 
