@@ -1,4 +1,4 @@
-const { Product, Transaction } = require("../../../models");
+const { Product, Image, Transaction } = require("../../../models");
 
 // const { Op } = require('sequelize')
 
@@ -145,7 +145,17 @@ module.exports = class {
 
     static async getWishlist(req, res) {
         try {
-            const result = await Transaction.findAll({ where: {buyerId: req.params.userid} })
+            const result = await Transaction.findAll({ 
+            include: [
+              {
+                model: Product,
+              },
+              {
+                model: Image,
+              },
+            ],
+            where: {buyerId: req.params.userid} })
+            
             res.status(200).json({
                 status: 200,
                 data: result
