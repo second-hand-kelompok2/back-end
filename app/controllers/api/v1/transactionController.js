@@ -131,7 +131,7 @@ module.exports = class {
 
     static async getNotification(req, res) {
         try {
-            const result = await Transaction.findAll({ where: {sellerId: req.params.userid, isRead: false} })
+            const result = await Transaction.findAll({ where: {sllerId: req.params.userid, isRead: false} })
             res.status(200).json({
                 status: 200,
                 data: result
