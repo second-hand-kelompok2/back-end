@@ -139,7 +139,7 @@ module.exports = class {
             model: Product,
             include: [
               {
-                model: Images,
+                model: Image,
               },
             ],
           },
