@@ -32,14 +32,14 @@ app.use(morgan("dev"));
 
 /** Install JSON request parser */
 app.use(express.json());
-app.use(cors());
-// app.use(
-//   cors({
-//     credentials: true,
-//     origin: "http://localhost:3000",
-//     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-//   })
-// );
+// app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+  })
+);
 /** Install View Engine */
 app.set("views", viewsDir);
 app.set("view engine", "ejs");
