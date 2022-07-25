@@ -73,7 +73,7 @@ module.exports = class {
             city: req.body.city,
             address: req.body.address,
           },
-          { where: { id: req.params.id } }
+          { where: { id: req.userlogin.id } }
         );
         res
           .status(201)
