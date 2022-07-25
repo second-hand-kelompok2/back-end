@@ -21,7 +21,7 @@ module.exports = class {
                 const result = await Transaction.create({
                     buyerId: req.body.buyerId,
                     //sllerId: seller['user_id'],
-                    sllerId: req.body.sellerId,
+                    sllerId: req.body.sllerId,
                     product_id: req.params.id,
                     req_price: req.body.req_price,
                     status: 'Pending',
