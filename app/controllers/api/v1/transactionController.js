@@ -137,9 +137,11 @@ module.exports = class {
         include: [
           {
             model: Product,
-          },
-          {
-            model: Images,
+            include: [
+              {
+                model: Images,
+              },
+            ],
           },
         ],
         where: { sllerId: req.params.userid, isRead: false },
