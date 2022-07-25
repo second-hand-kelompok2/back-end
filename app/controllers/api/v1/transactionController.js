@@ -175,7 +175,9 @@ module.exports = class {
     
     static async deleteAllTransaction(req, res) {
         try {
-            await Transaction.destroy()
+            await Transaction.destroy({
+              truncate: true
+            })
             res.status(200).json({
                 status: 200,
                 message: "Seluruh data transaksi telah dihapus"
